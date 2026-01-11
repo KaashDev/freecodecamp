@@ -1,7 +1,7 @@
 User Stories:
 
-You should have a function named create_character.
-The function should accept, in order, a character name followed by three stats: strength, intelligence, and charisma.
+- You should have a function named create_character.
+- The function should accept, in order, a character name followed by three stats: strength, intelligence, and charisma.
 The character name should be validated:
 If the character name is not a string, the function should return The character name should be a string.
 If the character name is an empty string, the function should return The character should have a name.
