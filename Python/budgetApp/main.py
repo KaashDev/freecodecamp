@@ -72,8 +72,52 @@ class Category:
             
 
 def create_spend_chart(categories):
+    spent_per_category = []
+
+    for category in categories:
+        spent = 0
+        for entry in category.ledger:
+            if entry["amount"] < 0:
+                spent += abs(entry["amount"])
+        spent_per_category.append(spent)
+
+    total_spent = sum(spent_per_category)
+
+    percentages = []
+    for spent in spent_per_category:
+        percent = int((spent/total_spent)*100)
+        percent = (percent//10) * 10
+        percentages.append(percent)
+
     
 
+    chart = "Percentage spent by category\n"
+
+    for level in range(100,-1, -10):
+        chart += str(level).rjust(3) + "|"
+        
+        for p in percentages:
+            if p >= level:
+                chart += " o "
+            else: chart += "   "
+        chart += " \n"
+
+    chart += "    " + "-" * (len(categories) * 3 + 1) + '\n'
+
+    max_len = max(len(cat.name) for cat in categories)
+
+    for i in range(max_len):
+        chart += "     "
+        for cat in categories:
+            if i < len(cat.name):
+                chart += cat.name[i] + "  "
+            else:
+                chart += "   "
+        chart += "\n"
+
+    return chart.rstrip("\n")
+
+        
  
 def main():
     food = Category('Food')
@@ -81,8 +125,17 @@ def main():
     food.withdraw(10.15, 'groceries')
     food.withdraw(15.89, 'restaurant and more food for dessert')
     clothing = Category('Clothing')
-    food.transfer(50, clothing)
-    print(food)
+    clothing.deposit(500, 'deposit')
+    clothing.withdraw(6.43, 'groceries')
+    clothing.withdraw(1.43, 'restaurant and more food for dessert')
+
+    auto = Category('Auto')
+    auto.deposit(500, 'car')
+    auto.withdraw(3.5, 'windshield')
+    auto.withdraw(1.0, 'tyre')
+
+    categories = [food, clothing, auto]
+    print(create_spend_chart(categories))
     
 if __name__ == '__main__':
     main()
