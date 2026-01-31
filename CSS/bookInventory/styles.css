@@ -1,0 +1,102 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #0a0a23;
+}
+
+h1 {
+  max-width: 37.25rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+}
+
+main {
+  margin: 0 auto;
+}
+
+.table-wrap {
+  padding: 0 0.75rem 1.5rem 0.75rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead th {
+  text-align: center;
+}
+
+tr[class="read"] {
+  background-image: linear-gradient(to right, lightgreen, darkseagreen);
+}
+
+tr[class="to-read"] {
+  background-image: linear-gradient(to right, lightgrey, grey);
+}
+
+tr[class="in-progress"] {
+  background-image: linear-gradient(to right, gold, yellow);
+}
+
+span {
+  display: inline-block;
+}
+
+tr[class="to-read"] span[class="status"] {
+  border: 2px solid red;
+  background-image: radial-gradient(salmon, lightpink);
+}
+
+tr[class="read"] span[class="status"] {
+  border: 2px solid green;
+  background-image: radial-gradient(lightgreen, palegreen);
+}
+
+tr[class="in-progress"] span[class="status"] {
+  border: 2px solid darkgoldenrod;
+  background-image: radial-gradient(gold, yellow);
+}
+
+span[class="status"],
+span[class^="rate"] {
+  height: 1.5rem;
+  width: 5rem;
+  padding: 0.2rem 2rem;
+  border-radius: 15px;
+}
+
+
+span[class^="rate"] > span {
+  border: 2px solid gold;
+  border-radius: 100%;
+  margin: 0 2px;
+  height: 12px;
+  width: 12px;
+  background-color: lightgray;
+}
+
+
+span[class~="one"] span:first-child {
+  background-image: linear-gradient(gold, yellow);
+}
+
+span[class~="two"] span:nth-child(-n+2) {
+  background-image: linear-gradient(gold, yellow);
+}
+
+span[class~="three"] span {
+  background-image: linear-gradient(gold, yellow);
+}
+
+span[class="status"],
+span[class^="rate"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  line-height: 1;
+}
